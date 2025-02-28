@@ -52,7 +52,73 @@ public class PlaneManagement {
     };
 
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        System.out.println(); //prints an empty line
+        System.out.println("Welcome to the Plane Management application"); //welcome message for the user
+        boolean flag = false; //flag to control the loop execution
+
+        //loop to display menu option and handle user input
+        do {
+            try {
+                System.out.println();
+                //Display menu options
+                System.out.print(
+                        "************************************************* \n" +
+                                "*                 MENU OPTIONS                  * \n" +
+                                "************************************************* \n" +
+                                "\t 1) Buy a Seat\n" +
+                                "\t 2) Cancel a Seat\n" +
+                                "\t 3) Find first available\n" +
+                                "\t 4) Show seating plan\n" +
+                                "\t 5) Print tickets information and total sales\n" +
+                                "\t 6) Search ticket\n" +
+                                "\t 0) Quit\n" +
+                                "************************************************* \n" +
+                                "Please select an option: ");
+
+                int select_seats = scanner.nextInt(); //read user input for menu option selection
+                switch (select_seats) { //switch case to perform actions based on user-selected option
+                    case 0: //quit
+                        flag = true; //setting flag to exit the loop
+                        break;
+                    case 1: //buy a seat
+                        buy_seat(); //calling method to buy a seat
+                        break;
+                    case 2: //cancel a seat
+                        cancel_seat(); //calling method to cancel a seat
+                        break;
+                    case 3: //find first available
+                        find_first_available(); //calling method to find the first available seat
+                        break;
+                    case 4: //show seating plan
+                        show_seating_plan(); //calling method to show seating plan
+                        break;
+                    case 5: //print tickets information and total price
+                        print_tickets_info(); //calling method to print ticket information
+                        break;
+                    case 6: //search ticket
+                        search_ticket(); //calling method to search for a specific seat
+                        break;
+                    default: //handling invalid menu option
+                        System.out.println("Please enter a valid option given to you");
+                        break;
+                }
+
+            } catch (Exception e) { //handling exception for invalid input
+                System.out.println("Please Enter a valid option");
+                scanner.nextLine(); //clear
+            }
+        } while (!flag); //loop until the flag is true (user chooses to quit)
     }
 
+    private static void buy_seat() {}
+
+    private static void cancel_seat() {}
+
+    private static void find_first_available() {}
+
+    private static void show_seating_plan() {}
+
+    private static void print_tickets_info() {}
+
+    private static void search_ticket() {}
 }
