@@ -172,7 +172,19 @@ public class PlaneManagement {
         }
     }
 
-    private static void find_first_available() {}
+    private static void find_first_available() {
+        System.out.println("Find the first available seat:"); //prompting user to find the first available seat
+        for (int i = 0; i < planeSeats.length; i++) { //looping through the planeSeats array to find the first available seat
+            for (int j = 0; j < planeSeats[i].length; j++) { //looping through the planeSeats array to find the first available seat
+                if (planeSeats[i][j] == 0) { //checking if the seat is available
+                    char row_letter = (char) ('A' + i); //calculating the row letter
+                    System.out.println("Seat " + row_letter + (j + 1) + " is available"); //displaying the available seat
+                    return;
+                }
+            }
+        }
+        System.out.println("All Seats have been reserved. We apologize for any inconvenience this may cause "); //displaying if all seats are reserved
+    }
 
     private static void show_seating_plan() {}
 
