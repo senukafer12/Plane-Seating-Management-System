@@ -110,9 +110,67 @@ public class PlaneManagement {
         } while (!flag); //loop until the flag is true (user chooses to quit)
     }
 
-    private static void buy_seat() {}
+    private static void buy_seat() {
+        System.out.println("Buy a Seat:"); //prompting the user for seat purchase
+        int[] arr3 = getInputs(); //get row and seat input from the user
+        int rowIndex = arr3[0];
+        int columnIndex = arr3[1];
+        int seatNumber = columnIndex + 1; //calculating seat number based on column index
+        char rowLetter = (char) (rowIndex + 'A'); //calculating row letter based on row index
 
-    private static void cancel_seat() {}
+        scanner.nextLine(); //clearing the input buffer
+        if (planeSeats[rowIndex][columnIndex] == 0) { //checking if the seat is available for booking
+            planeSeats[rowIndex][columnIndex] = 1; //marking the seat as booked in the planeSeats array
+
+            //prompt for user to enter their name, surname, and email
+            System.out.print("Enter your Name   : ");
+            String name = scanner.nextLine();
+            System.out.print("Enter your Surname: ");
+            String surname = scanner.nextLine();
+            System.out.print("Enter your E-mail : ");
+            String email = scanner.nextLine();
+
+            Person newPerson = new Person(name, surname, email); //create a new Person object with user details
+
+            //calculating ticket price based seat number (column)
+            int price;
+            if (seatNumber <= 5) {
+                price = 200;
+            } else if (seatNumber <= 9) {
+                price = 150;
+            } else {
+                price = 180;
+            }
+
+            Ticket newTicket = new Ticket(rowLetter, seatNumber, price, newPerson); //create a new Ticket object with seat details and person information
+
+            newTicket.save(); //saving ticket information
+            ticketArr[rowIndex][columnIndex] = newTicket; //storing ticket object in ticket array(ticketArr)
+
+            System.out.println("Your seat is successfully booked"); //confirmation message for successful booking
+        } else {
+            System.out.println("This seat is already booked. Please book another seat."); //seat is already booked
+        }
+    }
+
+    private static void cancel_seat() {
+        System.out.println("Cancel a Seat:"); //prompting user for seat cancellation
+        int[] arr4 = getInputs(); //getting row and seat number input from the user
+        int rowIndex = arr4[0];
+        int columnIndex = arr4[1];
+
+        if (planeSeats[rowIndex][columnIndex] == 1) { //checking if the seat is booked
+            planeSeats[rowIndex][columnIndex] = 0; //setting the seat status as available
+            System.out.println("Seat is successfully canceled.");
+
+            if (ticketArr[rowIndex][columnIndex] != null) {
+                ticketArr[rowIndex][columnIndex].deleteFile(); //deleting the corresponding Ticket object if it exists
+                ticketArr[rowIndex][columnIndex] = null;
+            }
+        } else {
+            System.out.println("Cannot be canceled. This seat is not booked."); //displaying a message if the seat is not booked
+        }
+    }
 
     private static void find_first_available() {}
 
