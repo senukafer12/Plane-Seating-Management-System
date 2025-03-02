@@ -110,7 +110,7 @@ public class PlaneManagement {
         } while (!flag); //loop until the flag is true (user chooses to quit)
     }
 
-    private static void buy_seat() {
+    private static void buy_seat() { //method to buy a seat
         System.out.println("Buy a Seat:"); //prompting the user for seat purchase
         int[] arr3 = getInputs(); //get row and seat input from the user
         int rowIndex = arr3[0];
@@ -153,7 +153,7 @@ public class PlaneManagement {
         }
     }
 
-    private static void cancel_seat() {
+    private static void cancel_seat() { //method to cancel a seat
         System.out.println("Cancel a Seat:"); //prompting user for seat cancellation
         int[] arr4 = getInputs(); //getting row and seat number input from the user
         int rowIndex = arr4[0];
@@ -172,7 +172,7 @@ public class PlaneManagement {
         }
     }
 
-    private static void find_first_available() {
+    private static void find_first_available() { //method to find the first available seat
         System.out.println("Find the first available seat:"); //prompting user to find the first available seat
         for (int i = 0; i < planeSeats.length; i++) { //looping through the planeSeats array to find the first available seat
             for (int j = 0; j < planeSeats[i].length; j++) { //looping through the planeSeats array to find the first available seat
@@ -186,7 +186,22 @@ public class PlaneManagement {
         System.out.println("All Seats have been reserved. We apologize for any inconvenience this may cause "); //displaying if all seats are reserved
     }
 
-    private static void show_seating_plan() {}
+    private static void show_seating_plan() { //method to display the seating plan
+        System.out.println("The Seating Plan: ( 'O' available, 'X' booked )"); //prompting user to show seating plan
+        System.out.println();
+        for (int i = 0; i < planeSeats.length; i++) { //looping through the planeSeats array to display the seating plan
+            for (int j = 0; j < planeSeats[i].length; j++) { //looping through the planeSeats array to display the seating plan
+                if (planeSeats[i][j] == 0) { //checking if the seat is available or booked
+                    System.out.print(" O "); //displaying 'O' for available seats
+                }
+                else {
+                    System.out.print(" X "); //displaying 'X' for booked seats
+                }
+            }
+            System.out.println(); //moving to the next row
+            System.out.println();
+        }
+    }
 
     private static void print_tickets_info() {}
 
