@@ -203,7 +203,20 @@ public class PlaneManagement {
         }
     }
 
-    private static void print_tickets_info() {}
+    private static void print_tickets_info() { //method to print ticket information
+        System.out.println("Tickets Information:"); //prompting user to print ticket information
+        int totalPrice = 0; //initializing a variable to store the total price
+        for (int i = 0; i < planeSeats.length; i++) { //looping through the planeSeats array to get ticket information
+            for (int j = 0; j < planeSeats[i].length; j++) { //looping through the planeSeats array to get ticket information
+                if (ticketArr[i][j] != null) { //checking if a ticket exists for the seat
+                    ticketArr[i][j].TicketInformation(); //printing ticket information
+                    System.out.println();
+                    totalPrice = totalPrice + ticketArr[i][j].getPrice(); //adding ticket price to total price
+                }
+            }
+        }
+        System.out.println("Your Total Price is: £" + totalPrice); //displaying the total price
+    }
 
     private static void search_ticket() {}
 }
