@@ -218,5 +218,16 @@ public class PlaneManagement {
         System.out.println("Your Total Price is: £" + totalPrice); //displaying the total price
     }
 
-    private static void search_ticket() {}
+    private static void search_ticket() { //method to search for a specific ticket
+        System.out.println("Search Ticket:"); //prompting user search for a ticket
+        int[] arr5 = getInputs(); //getting row and seat number input from the user
+        int rowIndex = arr5[0];
+        int columnIndex = arr5[1];
+
+        if (ticketArr[rowIndex][columnIndex] != null) { //checking if a ticket exists for the seat
+            ticketArr[rowIndex][columnIndex].TicketInformation(); //printing ticket information
+        } else {
+            System.out.println("This seat is available"); //displaying a message if the seat is available
+        }
+    }
 }
